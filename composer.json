@@ -1,7 +1,13 @@
 {
     "name"             : "yoeunes/toastr",
     "description"      : "Easy toastr notifications for Laravel 5",
-    "keywords"         : [ "toastr", "notification", "laravel", "laravel 5", "php" ],
+    "keywords"         : [
+        "toastr",
+        "notification",
+        "laravel",
+        "laravel 5",
+        "php"
+    ],
     "homepage"         : "https://github.com/yoeunes/toastr",
     "license"          : "MIT",
     "authors"          : [
@@ -40,10 +46,7 @@
         "laravel": {
             "providers": [
                 "Yoeunes\\Toastr\\ToastrServiceProvider"
-            ],
-            "aliases"  : {
-                "Toastr": "Yoeunes\\Toastr\\Facades\\Toastr"
-            }
+            ]
         }
     },
     "config"           : {

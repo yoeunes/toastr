@@ -11,6 +11,8 @@ class Toastr
      */
     protected $notifications = [];
 
+    protected $allowedTypes = ['error', 'info', 'success', 'warning'];
+
     /**
      * Render the notifications' script tag.
      *
@@ -53,16 +55,11 @@ class Toastr
      * @param string $message The notification's message
      * @param string $title The notification's title
      * @param array $options
-     *
-     * @return bool Returns whether the notification was successfully added or
-     *              not.
      */
     public function add($type, $message, $title = null, $options = [])
     {
-        $allowedTypes = ['error', 'info', 'success', 'warning'];
-
-        if (!in_array($type, $allowedTypes)) {
-            return false;
+        if (!in_array($type, $this->allowedTypes)) {
+            $type = 'warning';
         }
 
         $this->notifications[] = [
@@ -73,8 +70,6 @@ class Toastr
         ];
 
         session()->flash('toastr::notifications', $this->notifications);
-
-        return true;
     }
 
     /**

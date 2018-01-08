@@ -11,7 +11,7 @@ class ToastrServiceProvider extends ServiceProvider
      *
      * @var bool
      */
-    protected $defer = false;
+    protected $defer = true;
 
     /**
      * Bootstrap the application events.
@@ -20,9 +20,11 @@ class ToastrServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->mergeConfigFrom(__DIR__.'/config/toastr.php', 'toastr');
+
         $this->publishes([
-            __DIR__.'/../../config/config.php' => config_path('toastr.php'),
-        ], 'config');
+            __DIR__.'/config/toastr.php' => config_path('toastr.php'),
+        ]);
     }
 
     /**
@@ -32,18 +34,8 @@ class ToastrServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('toastr', function ($app) {
-            return new Toastr($app['session'], $app['config']);
+        $this->app->singleton('toastr', function () {
+            return new Toastr();
         });
-    }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return ['toastr'];
     }
 }
