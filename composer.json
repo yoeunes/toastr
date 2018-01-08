@@ -1,6 +1,8 @@
 {
     "name"             : "yoeunes/toastr",
+    "license"          : "MIT",
     "description"      : "Easy toastr notifications for Laravel 5",
+    "homepage"         : "https://github.com/yoeunes/toastr",
     "keywords"         : [
         "toastr",
         "notification",
@@ -8,11 +10,9 @@
         "laravel 5",
         "php"
     ],
-    "homepage"         : "https://github.com/yoeunes/toastr",
-    "license"          : "MIT",
     "authors"          : [
         {
-            "name"    : "Younes Khouza",
+            "name"    : "Younes Khoubza",
             "email"   : "younes.khoubza@gmail.com",
             "homepage": "https://dalilbook.com",
             "role"    : "Developer"
@@ -29,7 +29,7 @@
     },
     "autoload"         : {
         "psr-4": {
-            "Yoeunes\\Toastr\\": "src/"
+            "Yoeunes\\Toastr\\": "src"
         },
         "files": [
             "src/Helpers/helpers.php"

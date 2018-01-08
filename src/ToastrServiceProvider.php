@@ -7,13 +7,6 @@ use Illuminate\Support\ServiceProvider;
 class ToastrServiceProvider extends ServiceProvider
 {
     /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = true;
-
-    /**
      * Bootstrap the application events.
      *
      * @return void
@@ -35,7 +28,7 @@ class ToastrServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('toastr', function () {
-            return new Toastr();
+            return new Toastr;
         });
     }
 }
