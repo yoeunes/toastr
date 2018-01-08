@@ -11,7 +11,7 @@ if (! function_exists('toastr')) {
      */
     function toastr(string $message = null, string $type = 'success', $title = null, $options = [])
     {
-        if(is_null($message)) {
+        if (is_null($message)) {
             return app('toastr');
         }
 
