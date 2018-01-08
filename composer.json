@@ -1,36 +1,52 @@
 {
-    "name": "yoeunes/toastr",
-    "description": "Easy toastr notifications for Laravel 5",
-    "keywords": ["toastr", "notification", "laravel", "php"],
-    "homepage": "https://github.com/yoeunes/toastr",
-    "license": "MIT",
-    "authors": [
+    "name"             : "yoeunes/toastr",
+    "description"      : "Easy toastr notifications for Laravel 5",
+    "keywords"         : [ "toastr", "notification", "laravel", "laravel 5", "php" ],
+    "homepage"         : "https://github.com/yoeunes/toastr",
+    "license"          : "MIT",
+    "authors"          : [
         {
-            "name": "Younes Khouza",
-            "email": "younes.khoubza@gmail.com",
+            "name"    : "Younes Khouza",
+            "email"   : "younes.khoubza@gmail.com",
             "homepage": "https://dalilbook.com",
             "role"    : "Developer"
         }
     ],
-    "require": {
-        "php": ">=7.0.0",
+    "require"          : {
+        "php"               : ">=7.0.0",
         "illuminate/support": "^5.5",
         "illuminate/session": "^5.5"
     },
-    "autoload": {
-        "psr-0": {
+    "require-dev"      : {
+        "phpunit/phpunit"    : "^6.5",
+        "orchestra/testbench": "^3.5"
+    },
+    "autoload"         : {
+        "psr-4": {
             "Yoeunes\\Toastr\\": "src/"
+        },
+        "files": [
+            "src/Helpers/helpers.php"
+        ]
+    },
+    "autoload-dev"     : {
+        "psr-4": {
+            "Yoeunes\\Toastr\\Tests\\": "tests"
         }
     },
     "minimum-stability": "dev",
-    "extra": {
+    "prefer-stable"    : true,
+    "extra"            : {
         "laravel": {
             "providers": [
                 "Yoeunes\\Toastr\\ToastrServiceProvider"
             ],
-            "aliases": {
+            "aliases"  : {
                 "Toastr": "Yoeunes\\Toastr\\Facades\\Toastr"
             }
         }
+    },
+    "config"           : {
+        "sort-packages": true
     }
 }
