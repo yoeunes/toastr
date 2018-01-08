@@ -2,8 +2,6 @@
 
 namespace Yoeunes\Toastr;
 
-use Illuminate\Config\Repository;
-
 class Toastr
 {
     /**
@@ -14,34 +12,6 @@ class Toastr
     protected $notifications = [];
 
     /**
-     * Illuminate Session.
-     *
-     * @var \Illuminate\Session\SessionManager
-     */
-    protected $session;
-
-    /**
-     * Toastr config.
-     *
-     * @var Illuminate\Config\Repository
-     */
-    protected $config;
-
-    /**
-     * Constructor.
-     *
-     * @param \Illuminate\Session\SessionManager      $session
-     * @param Repository|Illuminate\Config\Repository $config
-     *
-     * @internal param \Illuminate\Session\SessionManager $session
-     */
-    public function __construct(\Illuminate\Session\SessionManager $session, Repository $config)
-    {
-        $this->session = $session;
-        $this->config = $config;
-    }
-
-    /**
      * Render the notifications' script tag.
      *
      * @return string
@@ -50,15 +20,12 @@ class Toastr
      */
     public function render()
     {
-        $notifications = $this->session->get('toastr::notifications');
-        if (!$notifications) {
-            $notifications = [];
-        }
+        $notifications = session('toastr::notifications', []);
 
         $output = '<script type="text/javascript">';
         $lastConfig = [];
         foreach ($notifications as $notification) {
-            $config = $this->config->get('toastr.options');
+            $config = config('toastr.options');
 
             if (count($notification['options']) > 0) {
                 // Merge user supplied options with default options
@@ -82,9 +49,10 @@ class Toastr
     /**
      * Add a notification.
      *
-     * @param string $type    Could be error, info, success, or warning.
+     * @param string $type Could be error, info, success, or warning.
      * @param string $message The notification's message
-     * @param string $title   The notification's title
+     * @param string $title The notification's title
+     * @param array $options
      *
      * @return bool Returns whether the notification was successfully added or
      *              not.
@@ -92,6 +60,7 @@ class Toastr
     public function add($type, $message, $title = null, $options = [])
     {
         $allowedTypes = ['error', 'info', 'success', 'warning'];
+
         if (!in_array($type, $allowedTypes)) {
             return false;
         }
@@ -103,14 +72,17 @@ class Toastr
             'options' => $options,
         ];
 
-        $this->session->flash('toastr::notifications', $this->notifications);
+        session()->flash('toastr::notifications', $this->notifications);
+
+        return true;
     }
 
     /**
      * Shortcut for adding an info notification.
      *
      * @param string $message The notification's message
-     * @param string $title   The notification's title
+     * @param string $title The notification's title
+     * @param array $options
      */
     public function info($message, $title = null, $options = [])
     {
@@ -121,7 +93,8 @@ class Toastr
      * Shortcut for adding an error notification.
      *
      * @param string $message The notification's message
-     * @param string $title   The notification's title
+     * @param string $title The notification's title
+     * @param array $options
      */
     public function error($message, $title = null, $options = [])
     {
@@ -132,7 +105,8 @@ class Toastr
      * Shortcut for adding a warning notification.
      *
      * @param string $message The notification's message
-     * @param string $title   The notification's title
+     * @param string $title The notification's title
+     * @param array $options
      */
     public function warning($message, $title = null, $options = [])
     {
@@ -143,7 +117,8 @@ class Toastr
      * Shortcut for adding a success notification.
      *
      * @param string $message The notification's message
-     * @param string $title   The notification's title
+     * @param string $title The notification's title
+     * @param array $options
      */
     public function success($message, $title = null, $options = [])
     {
