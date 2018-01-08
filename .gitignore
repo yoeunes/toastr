@@ -1,4 +1,7 @@
-/vendor
+vendor/
+.idea
+/coverage
 composer.phar
 composer.lock
-.DS_Store
+coverage.clover
+phpunit.phar
