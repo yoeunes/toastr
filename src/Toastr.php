@@ -24,7 +24,7 @@ class Toastr
     {
         $notifications = session('toastr::notifications', []);
 
-        $output = '<script type="text/javascript">';
+        $output     = '<script type="text/javascript">';
         $lastConfig = [];
         foreach ($notifications as $notification) {
             $config = config('toastr.options');
@@ -58,7 +58,7 @@ class Toastr
      */
     public function add($type, $message, $title = null, $options = [])
     {
-        if (!in_array($type, $this->allowedTypes)) {
+        if (! in_array($type, $this->allowedTypes)) {
             $type = 'warning';
         }
 
