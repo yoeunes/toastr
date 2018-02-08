@@ -2,6 +2,7 @@
 
 namespace Yoeunes\Toastr;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class ToastrServiceProvider extends ServiceProvider
@@ -16,6 +17,8 @@ class ToastrServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/toastr.php' => config_path('toastr.php'),
         ], 'config');
+
+        $this->registerBladeDirectives();
     }
 
     /**
@@ -29,6 +32,25 @@ class ToastrServiceProvider extends ServiceProvider
 
         $this->app->singleton('toastr', function () {
             return new Toastr();
+        });
+    }
+
+    public function registerBladeDirectives()
+    {
+        Blade::directive('toastr_render', function () {
+            return "<?php echo app('toastr')->render(); ?>";
+        });
+
+        Blade::directive('toastr_css', function ($version) {
+            return "<?php echo toastr_css($version); ?>";
+        });
+
+        Blade::directive('toastr_js', function ($version) {
+            return "<?php echo toastr_js($version); ?>";
+        });
+
+        Blade::directive('jquery', function ($version) {
+            return "<?php echo jquery($version); ?>";
         });
     }
 }
