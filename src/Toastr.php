@@ -32,44 +32,52 @@ class Toastr
      */
     public function render()
     {
-        $notifications = session('toastr::notifications', []);
-
-        $output     = '<script type="text/javascript">';
-        $lastConfig = [];
-        foreach ($notifications as $notification) {
-            $config = config('toastr.options');
-
-            if (count($notification['options']) > 0) {
-                $config = array_merge($config, $notification['options']);
-            }
-
-            if ($config != $lastConfig) {
-                $output .= 'toastr.options = '.json_encode($config).';';
-                $lastConfig = $config;
-            }
-
-            $output .= 'toastr.'.$notification['type']."('".$this->escapeString($notification['message'])."'".(isset($notification['title']) ? ", '".$this->escapeString($notification['title'])."'" : null).');';
-        }
-        $output .= '</script>';
-
-        return $output;
-    }
-
-    public function constructToastr($type, $message, $title, $options)
-    {
-        $output = "toastr.${$type}(${$message}, ${$title}, ${$options});";
-
-        return $output;
+        return '<script type="text/javascript">' . $this->options() . $this->notificationsAsString() . '</script>';
     }
 
     /**
-     * @param string $value
+     * Get global toastr options
      *
      * @return string
      */
-    public function escapeString(string $value)
+    public function options()
     {
-        return str_replace("'", "\\'", $value);
+        return 'toastr.options = '.json_encode(config('toastr.options')).';';
+    }
+
+    /**
+     * Create a single toastr
+     *
+     * @param string $type
+     * @param string $message
+     * @param string|null $title
+     * @param string|null $options
+     *
+     * @return string
+     */
+    public function toastr(string $type, string $message, string $title = null, string $options = null)
+    {
+        return "toastr.${$type}(${$message}, ${$title}, ${$options});";
+    }
+
+    /**
+     * map over all notifications and create an array of toastrs
+     *
+     * @return array
+     */
+    public function notifications()
+    {
+        return array_map(function($n) {
+            return $this->toastr($n['type'], $n['message'], $n['title'], json_encode($n['options']));
+        }, session('toastr::notifications', []));
+    }
+
+    /**
+     * @return string
+     */
+    public function notificationsAsString()
+    {
+        return implode("", $this->notifications());
     }
 
     /**
