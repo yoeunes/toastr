@@ -4,8 +4,8 @@ namespace Yoeunes\Toastr;
 
 class Toastr
 {
-    const ERROR   = 'error';
-    const INFO    = 'info';
+    const ERROR = 'error';
+    const INFO = 'info';
     const SUCCESS = 'success';
     const WARNING = 'warning';
 
@@ -32,7 +32,7 @@ class Toastr
      */
     public function render()
     {
-        return '<script type="text/javascript">' . $this->options() . $this->notificationsAsString() . '</script>';
+        return '<script type="text/javascript">'.$this->options().$this->notificationsAsString().'</script>';
     }
 
     /**
@@ -55,10 +55,11 @@ class Toastr
      *
      * @return string
      */
-    public function toastr(string $type, string $message, string $title = null, string $options = null)
+    public function toastr(string $type, string $message = '', string $title = '', string $options = '')
     {
-        return "toastr.${$type}(${$message}, ${$title}, ${$options});";
+        return "toastr.$type('$message', '$title', $options);";
     }
+
 
     /**
      * map over all notifications and create an array of toastrs.
@@ -67,9 +68,24 @@ class Toastr
      */
     public function notifications()
     {
-        return array_map(function ($n) {
-            return $this->toastr($n['type'], $n['message'], $n['title'], json_encode($n['options']));
-        }, session('toastr::notifications', []));
+        return array_map(
+            function ($n) {
+                return $this->toastr($n[ 'type' ], $n[ 'message' ], $n[ 'title' ], $n[ 'options' ]);
+            },
+            session('toastr::notifications', [])
+        );
+    }
+
+    /**
+     * helper function to escape single quote for example for french words
+     *
+     * @param string $value
+     *
+     * @return string
+     */
+    public function escapeSingleQuote(string $value)
+    {
+        return str_replace("'", "\\'", $value);
     }
 
     /**
@@ -88,17 +104,13 @@ class Toastr
      * @param string $title The notification's title
      * @param array $options
      */
-    public function add($type, $message, $title = null, $options = [])
+    public function add(string $type, string $message, string $title = '', array $options = [])
     {
-        if (! in_array($type, $this->allowedTypes)) {
-            $type = self::WARNING;
-        }
-
         $this->notifications[] = [
-            'type'    => $type,
-            'title'   => $title,
-            'message' => $message,
-            'options' => $options,
+            'type'    => in_array($type, $this->allowedTypes) ? $type : self::WARNING,
+            'title'   => $this->escapeSingleQuote($title),
+            'message' => $this->escapeSingleQuote($message),
+            'options' => json_encode($options),
         ];
 
         session()->flash('toastr::notifications', $this->notifications);
@@ -111,7 +123,7 @@ class Toastr
      * @param string $title The notification's title
      * @param array $options
      */
-    public function info($message, $title = null, $options = [])
+    public function info(string $message, string $title = '', array $options = [])
     {
         $this->add(self::INFO, $message, $title, $options);
     }
@@ -123,7 +135,7 @@ class Toastr
      * @param string $title The notification's title
      * @param array $options
      */
-    public function error($message, $title = null, $options = [])
+    public function error(string $message, string $title = '', array $options = [])
     {
         $this->add(self::ERROR, $message, $title, $options);
     }
@@ -135,7 +147,7 @@ class Toastr
      * @param string $title The notification's title
      * @param array $options
      */
-    public function warning($message, $title = null, $options = [])
+    public function warning(string $message, string $title = '', array $options = [])
     {
         $this->add(self::WARNING, $message, $title, $options);
     }
@@ -147,7 +159,7 @@ class Toastr
      * @param string $title The notification's title
      * @param array $options
      */
-    public function success($message, $title = null, $options = [])
+    public function success(string $message, string $title = '', array $options = [])
     {
         $this->add(self::SUCCESS, $message, $title, $options);
     }
