@@ -4,8 +4,8 @@ namespace Yoeunes\Toastr;
 
 class Toastr
 {
-    const ERROR = 'error';
-    const INFO = 'info';
+    const ERROR   = 'error';
+    const INFO    = 'info';
     const SUCCESS = 'success';
     const WARNING = 'warning';
 
@@ -60,7 +60,6 @@ class Toastr
         return "toastr.$type('$message', '$title', $options);";
     }
 
-
     /**
      * map over all notifications and create an array of toastrs.
      *
@@ -70,14 +69,14 @@ class Toastr
     {
         return array_map(
             function ($n) {
-                return $this->toastr($n[ 'type' ], $n[ 'message' ], $n[ 'title' ], $n[ 'options' ]);
+                return $this->toastr($n['type'], $n['message'], $n['title'], $n['options']);
             },
             session('toastr::notifications', [])
         );
     }
 
     /**
-     * helper function to escape single quote for example for french words
+     * helper function to escape single quote for example for french words.
      *
      * @param string $value
      *
