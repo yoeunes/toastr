@@ -24,6 +24,72 @@ class Toastr
     protected $allowedTypes = [self::ERROR, self::INFO, self::SUCCESS, self::WARNING];
 
     /**
+     * Shortcut for adding an error notification.
+     *
+     * @param string $message The notification's message
+     * @param string $title The notification's title
+     * @param array $options
+     */
+    public function error(string $message, string $title = '', array $options = [])
+    {
+        $this->addNotification(self::ERROR, $message, $title, $options);
+    }
+
+    /**
+     * Shortcut for adding an info notification.
+     *
+     * @param string $message The notification's message
+     * @param string $title The notification's title
+     * @param array $options
+     */
+    public function info(string $message, string $title = '', array $options = [])
+    {
+        $this->addNotification(self::INFO, $message, $title, $options);
+    }
+
+    /**
+     * Shortcut for adding a success notification.
+     *
+     * @param string $message The notification's message
+     * @param string $title The notification's title
+     * @param array $options
+     */
+    public function success(string $message, string $title = '', array $options = [])
+    {
+        $this->addNotification(self::SUCCESS, $message, $title, $options);
+    }
+
+    /**
+     * Shortcut for adding a warning notification.
+     *
+     * @param string $message The notification's message
+     * @param string $title The notification's title
+     * @param array $options
+     */
+    public function warning(string $message, string $title = '', array $options = [])
+    {
+        $this->addNotification(self::WARNING, $message, $title, $options);
+    }
+
+    /**
+     * Add a notification.
+     *
+     * @param string $type Could be error, info, success, or warning.
+     * @param string $message The notification's message
+     * @param string $title The notification's title
+     * @param array $options
+     */
+    public function addNotification(string $type, string $message, string $title = '', array $options = [])
+    {
+        $this->notifications[] = [
+            'type'    => in_array($type, $this->allowedTypes) ? $type : self::WARNING,
+            'title'   => $this->escapeSingleQuote($title),
+            'message' => $this->escapeSingleQuote($message),
+            'options' => json_encode($options),
+        ];
+    }
+
+    /**
      * Render the notifications' script tag.
      *
      * @return string
@@ -46,6 +112,29 @@ class Toastr
     }
 
     /**
+     * @return string
+     */
+    public function notificationsAsString()
+    {
+        return implode('', $this->notifications());
+    }
+
+    /**
+     * map over all notifications and create an array of toastrs.
+     *
+     * @return array
+     */
+    public function notifications()
+    {
+        return array_map(
+            function ($n) {
+                return $this->toastr($n['type'], $n['message'], $n['title'], $n['options']);
+            },
+            $this->notifications
+        );
+    }
+
+    /**
      * Create a single toastr.
      *
      * @param string $type
@@ -61,18 +150,11 @@ class Toastr
     }
 
     /**
-     * map over all notifications and create an array of toastrs.
-     *
-     * @return array
+     * Clear all notifications.
      */
-    public function notifications()
+    public function clear()
     {
-        return array_map(
-            function ($n) {
-                return $this->toastr($n['type'], $n['message'], $n['title'], $n['options']);
-            },
-            session('toastr::notifications', [])
-        );
+        $this->notifications = [];
     }
 
     /**
@@ -82,92 +164,8 @@ class Toastr
      *
      * @return string
      */
-    public function escapeSingleQuote(string $value)
+    private function escapeSingleQuote(string $value)
     {
         return str_replace("'", "\\'", $value);
-    }
-
-    /**
-     * @return string
-     */
-    public function notificationsAsString()
-    {
-        return implode('', $this->notifications());
-    }
-
-    /**
-     * Add a notification.
-     *
-     * @param string $type Could be error, info, success, or warning.
-     * @param string $message The notification's message
-     * @param string $title The notification's title
-     * @param array $options
-     */
-    public function add(string $type, string $message, string $title = '', array $options = [])
-    {
-        $this->notifications[] = [
-            'type'    => in_array($type, $this->allowedTypes) ? $type : self::WARNING,
-            'title'   => $this->escapeSingleQuote($title),
-            'message' => $this->escapeSingleQuote($message),
-            'options' => json_encode($options),
-        ];
-
-        session()->flash('toastr::notifications', $this->notifications);
-    }
-
-    /**
-     * Shortcut for adding an info notification.
-     *
-     * @param string $message The notification's message
-     * @param string $title The notification's title
-     * @param array $options
-     */
-    public function info(string $message, string $title = '', array $options = [])
-    {
-        $this->add(self::INFO, $message, $title, $options);
-    }
-
-    /**
-     * Shortcut for adding an error notification.
-     *
-     * @param string $message The notification's message
-     * @param string $title The notification's title
-     * @param array $options
-     */
-    public function error(string $message, string $title = '', array $options = [])
-    {
-        $this->add(self::ERROR, $message, $title, $options);
-    }
-
-    /**
-     * Shortcut for adding a warning notification.
-     *
-     * @param string $message The notification's message
-     * @param string $title The notification's title
-     * @param array $options
-     */
-    public function warning(string $message, string $title = '', array $options = [])
-    {
-        $this->add(self::WARNING, $message, $title, $options);
-    }
-
-    /**
-     * Shortcut for adding a success notification.
-     *
-     * @param string $message The notification's message
-     * @param string $title The notification's title
-     * @param array $options
-     */
-    public function success(string $message, string $title = '', array $options = [])
-    {
-        $this->add(self::SUCCESS, $message, $title, $options);
-    }
-
-    /**
-     * Clear all notifications.
-     */
-    public function clear()
-    {
-        $this->notifications = [];
     }
 }

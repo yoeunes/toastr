@@ -15,7 +15,7 @@ if (! function_exists('toastr')) {
             return app('toastr');
         }
 
-        return app('toastr')->add($type, $message, $title, $options);
+        return app('toastr')->addNotification($type, $message, $title, $options);
     }
 }
 
