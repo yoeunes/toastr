@@ -2,8 +2,8 @@
 
 namespace Yoeunes\Toastr\Tests;
 
-use Orchestra\Testbench\TestCase as BaseTestCase;
 use Yoeunes\Toastr\ToastrServiceProvider;
+use Orchestra\Testbench\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase
 {
