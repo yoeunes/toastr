@@ -17,7 +17,7 @@ class Toastr
     protected $notifications = [];
 
     /**
-     * Allowed toast types
+     * Allowed toast types.
      *
      * @var array
      */
@@ -36,7 +36,7 @@ class Toastr
     }
 
     /**
-     * Get global toastr options
+     * Get global toastr options.
      *
      * @return string
      */
@@ -46,7 +46,7 @@ class Toastr
     }
 
     /**
-     * Create a single toastr
+     * Create a single toastr.
      *
      * @param string $type
      * @param string $message
@@ -61,13 +61,13 @@ class Toastr
     }
 
     /**
-     * map over all notifications and create an array of toastrs
+     * map over all notifications and create an array of toastrs.
      *
      * @return array
      */
     public function notifications()
     {
-        return array_map(function($n) {
+        return array_map(function ($n) {
             return $this->toastr($n['type'], $n['message'], $n['title'], json_encode($n['options']));
         }, session('toastr::notifications', []));
     }
@@ -77,7 +77,7 @@ class Toastr
      */
     public function notificationsAsString()
     {
-        return implode("", $this->notifications());
+        return implode('', $this->notifications());
     }
 
     /**

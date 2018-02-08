@@ -19,7 +19,7 @@ if (! function_exists('toastr')) {
     }
 }
 
-if (!function_exists('toastr_js')) {
+if (! function_exists('toastr_js')) {
     /**
      * @param string $version
      * @param string $src
@@ -28,7 +28,7 @@ if (!function_exists('toastr_js')) {
      */
     function toastr_js(string $version = '2.1.4', string $src = null)
     {
-        if(null === $src) {
+        if (null === $src) {
             $src = 'https://cdnjs.cloudflare.com/ajax/libs/toastr.js/'.$version.'/toastr.min.js';
         }
 
@@ -36,7 +36,7 @@ if (!function_exists('toastr_js')) {
     }
 }
 
-if (!function_exists('toastr_css')) {
+if (! function_exists('toastr_css')) {
     /**
      * @param string $version
      * @param string $href
@@ -45,7 +45,7 @@ if (!function_exists('toastr_css')) {
      */
     function toastr_css(string $version = '2.1.4', string $href = null)
     {
-        if(null === $href) {
+        if (null === $href) {
             $href = 'https://cdnjs.cloudflare.com/ajax/libs/toastr.js/'.$version.'/toastr.min.css';
         }
 
@@ -53,7 +53,7 @@ if (!function_exists('toastr_css')) {
     }
 }
 
-if (!function_exists('jquery')) {
+if (! function_exists('jquery')) {
     /**
      * @param string $version
      * @param string $src
