@@ -2,6 +2,5 @@ vendor/
 .idea
 /coverage
 composer.phar
-composer.lock
 coverage.clover
 phpunit.phar

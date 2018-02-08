@@ -1,7 +1,7 @@
-#before_commands:
-#  - composer self-update
-#  - composer install
-#  - composer update --prefer-source
+before_commands:
+  - composer self-update
+  - composer install
+  - composer update --prefer-source
 
 checks:
     php:
@@ -56,16 +56,16 @@ tools:
         filter:
             paths: ["src/*", "tests/*"]
 
-#build:
-#    environment:
-#        php: '7.0.6'
-#    tests:
-#        override:
-#            -
-#                command: 'vendor/bin/phpunit --coverage-clover=coverage.clover'
-#                coverage:
-#                    file: 'coverage.clover'
-#                    format: 'clover'
+build:
+    environment:
+        php: '7.1.13'
+    tests:
+        override:
+            -
+                command: 'vendor/bin/phpunit --coverage-clover=coverage.clover'
+                coverage:
+                    file: 'coverage.clover'
+                    format: 'clover'
 
 filter:
     excluded_paths:

@@ -1,10 +1,11 @@
 {
     "name"             : "yoeunes/toastr",
     "license"          : "MIT",
-    "description"      : "Easy toastr notifications for Laravel 5",
+    "description"      : "toastr.js notifications for Laravel 5",
     "homepage"         : "https://github.com/yoeunes/toastr",
     "keywords"         : [
         "toastr",
+        "toastr js",
         "notification",
         "laravel",
         "laravel 5",
@@ -19,28 +20,19 @@
         }
     ],
     "require"          : {
-        "php"               : ">=7.0.0",
-        "illuminate/support": "^5.5",
-        "illuminate/session": "^5.5"
-    },
-    "require-dev"      : {
-        "phpunit/phpunit"    : "^6.5",
-        "orchestra/testbench": "^3.5"
+        "php": "^7.0|^7.1",
+        "illuminate/session": "~5.5.0|~5.6.0",
+        "illuminate/support": "~5.5.0|~5.6.0"
     },
     "autoload"         : {
         "psr-4": {
             "Yoeunes\\Toastr\\": "src"
         },
         "files": [
-            "src/Helpers/helpers.php"
+            "src/helpers.php"
         ]
     },
-    "autoload-dev"     : {
-        "psr-4": {
-            "Yoeunes\\Toastr\\Tests\\": "tests"
-        }
-    },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable"    : true,
     "extra"            : {
         "laravel": {

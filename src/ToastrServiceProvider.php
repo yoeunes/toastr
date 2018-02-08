@@ -13,11 +13,9 @@ class ToastrServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->mergeConfigFrom(__DIR__.'/config/toastr.php', 'toastr');
-
         $this->publishes([
-            __DIR__.'/config/toastr.php' => config_path('toastr.php'),
-        ]);
+            __DIR__.'/../config/toastr.php' => config_path('toastr.php'),
+        ], 'config');
     }
 
     /**
@@ -27,8 +25,10 @@ class ToastrServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom(__DIR__.'/../config/toastr.php', 'toastr');
+
         $this->app->singleton('toastr', function () {
-            return new Toastr;
+            return new Toastr();
         });
     }
 }
