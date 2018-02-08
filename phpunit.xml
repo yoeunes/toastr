@@ -6,8 +6,10 @@
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
+         printerClass="Codedungeon\PHPUnitPrettyResultPrinter\Printer"
          processIsolation="false"
-         stopOnFailure="true">
+         stopOnFailure="true"
+         syntaxCheck="false">
     <testsuites>
         <testsuite name="toastr test suite">
             <directory suffix="Test.php">./tests</directory>
