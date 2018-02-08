@@ -16,6 +16,11 @@ class Toastr
      */
     protected $notifications = [];
 
+    public function __construct()
+    {
+        $this->notifications = session('toastr::notifications', []);
+    }
+
     /**
      * Allowed toast types.
      *
@@ -87,6 +92,8 @@ class Toastr
             'message' => $this->escapeSingleQuote($message),
             'options' => json_encode($options),
         ];
+
+        session()->flash('toastr::notifications', $this->notifications);
     }
 
     /**
@@ -130,7 +137,7 @@ class Toastr
             function ($n) {
                 return $this->toastr($n['type'], $n['message'], $n['title'], $n['options']);
             },
-            $this->notifications
+            session('toastr::notifications', [])
         );
     }
 
