@@ -7,7 +7,7 @@ if (! function_exists('toastr')) {
      * @param string $title
      * @param array $options
      *
-     * @return \Yoeunes\Toastr\Toastr or void
+     * @return \Yoeunes\Toastr\Toastr
      */
     function toastr(string $message = null, string $type = 'success', string $title = '', array $options = [])
     {
@@ -15,7 +15,7 @@ if (! function_exists('toastr')) {
             return app('toastr');
         }
 
-        app('toastr')->addNotification($type, $message, $title, $options);
+        return app('toastr')->addNotification($type, $message, $title, $options);
     }
 }
 

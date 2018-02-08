@@ -9,6 +9,8 @@ class Toastr
     const SUCCESS = 'success';
     const WARNING = 'warning';
 
+    const TOASTR_NOTIFICATIONS = 'toastr::notifications';
+
     /**
      * Added notifications.
      *
@@ -18,7 +20,7 @@ class Toastr
 
     public function __construct()
     {
-        $this->notifications = session('toastr::notifications', []);
+        $this->notifications = session(self::TOASTR_NOTIFICATIONS, []);
     }
 
     /**
@@ -34,10 +36,12 @@ class Toastr
      * @param string $message The notification's message
      * @param string $title The notification's title
      * @param array $options
+     *
+     * @return Toastr
      */
     public function error(string $message, string $title = '', array $options = [])
     {
-        $this->addNotification(self::ERROR, $message, $title, $options);
+        return $this->addNotification(self::ERROR, $message, $title, $options);
     }
 
     /**
@@ -46,10 +50,12 @@ class Toastr
      * @param string $message The notification's message
      * @param string $title The notification's title
      * @param array $options
+     *
+     * @return Toastr
      */
     public function info(string $message, string $title = '', array $options = [])
     {
-        $this->addNotification(self::INFO, $message, $title, $options);
+        return $this->addNotification(self::INFO, $message, $title, $options);
     }
 
     /**
@@ -58,10 +64,12 @@ class Toastr
      * @param string $message The notification's message
      * @param string $title The notification's title
      * @param array $options
+     *
+     * @return Toastr
      */
     public function success(string $message, string $title = '', array $options = [])
     {
-        $this->addNotification(self::SUCCESS, $message, $title, $options);
+        return $this->addNotification(self::SUCCESS, $message, $title, $options);
     }
 
     /**
@@ -70,10 +78,12 @@ class Toastr
      * @param string $message The notification's message
      * @param string $title The notification's title
      * @param array $options
+     *
+     * @return Toastr
      */
     public function warning(string $message, string $title = '', array $options = [])
     {
-        $this->addNotification(self::WARNING, $message, $title, $options);
+        return $this->addNotification(self::WARNING, $message, $title, $options);
     }
 
     /**
@@ -83,6 +93,8 @@ class Toastr
      * @param string $message The notification's message
      * @param string $title The notification's title
      * @param array $options
+     *
+     * @return Toastr
      */
     public function addNotification(string $type, string $message, string $title = '', array $options = [])
     {
@@ -93,7 +105,9 @@ class Toastr
             'options' => json_encode($options),
         ];
 
-        session()->flash('toastr::notifications', $this->notifications);
+        session()->flash(self::TOASTR_NOTIFICATIONS, $this->notifications);
+
+        return $this;
     }
 
     /**
@@ -105,7 +119,11 @@ class Toastr
      */
     public function render()
     {
-        return '<script type="text/javascript">'.$this->options().$this->notificationsAsString().'</script>';
+        $toastr = '<script type="text/javascript">'.$this->options().$this->notificationsAsString().'</script>';
+
+        session()->forget(self::TOASTR_NOTIFICATIONS);
+
+        return $toastr;
     }
 
     /**
@@ -137,7 +155,7 @@ class Toastr
             function ($n) {
                 return $this->toastr($n['type'], $n['message'], $n['title'], $n['options']);
             },
-            session('toastr::notifications', [])
+            session(self::TOASTR_NOTIFICATIONS, [])
         );
     }
 
@@ -158,10 +176,14 @@ class Toastr
 
     /**
      * Clear all notifications.
+     *
+     * @return Toastr
      */
     public function clear()
     {
         $this->notifications = [];
+
+        return $this;
     }
 
     /**
