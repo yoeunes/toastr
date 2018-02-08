@@ -4,6 +4,11 @@ namespace Yoeunes\Toastr;
 
 class Toastr
 {
+    const ERROR   = 'error';
+    const INFO    = 'info';
+    const SUCCESS = 'success';
+    const WARNING = 'warning';
+
     /**
      * Added notifications.
      *
@@ -11,7 +16,12 @@ class Toastr
      */
     protected $notifications = [];
 
-    protected $allowedTypes = ['error', 'info', 'success', 'warning'];
+    /**
+     * Allowed toast types
+     *
+     * @var array
+     */
+    protected $allowedTypes = [self::ERROR, self::INFO, self::SUCCESS, self::WARNING];
 
     /**
      * Render the notifications' script tag.
@@ -30,22 +40,36 @@ class Toastr
             $config = config('toastr.options');
 
             if (count($notification['options']) > 0) {
-                // Merge user supplied options with default options
                 $config = array_merge($config, $notification['options']);
             }
 
-            // Config persists between toasts
             if ($config != $lastConfig) {
                 $output .= 'toastr.options = '.json_encode($config).';';
                 $lastConfig = $config;
             }
 
-            // Toastr output
-            $output .= 'toastr.'.$notification['type']."('".str_replace("'", "\\'", $notification['message'])."'".(isset($notification['title']) ? ", '".str_replace("'", "\\'", htmlentities($notification['title']))."'" : null).');';
+            $output .= 'toastr.'.$notification['type']."('".$this->escapeString($notification['message'])."'".(isset($notification['title']) ? ", '".$this->escapeString($notification['title'])."'" : null).');';
         }
         $output .= '</script>';
 
         return $output;
+    }
+
+    public function constructToastr($type, $message, $title, $options)
+    {
+        $output = "toastr.${$type}(${$message}, ${$title}, ${$options});";
+
+        return $output;
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return string
+     */
+    public function escapeString(string $value)
+    {
+        return str_replace("'", "\\'", $value);
     }
 
     /**
@@ -59,7 +83,7 @@ class Toastr
     public function add($type, $message, $title = null, $options = [])
     {
         if (! in_array($type, $this->allowedTypes)) {
-            $type = 'warning';
+            $type = self::WARNING;
         }
 
         $this->notifications[] = [
@@ -81,7 +105,7 @@ class Toastr
      */
     public function info($message, $title = null, $options = [])
     {
-        $this->add('info', $message, $title, $options);
+        $this->add(self::INFO, $message, $title, $options);
     }
 
     /**
@@ -93,7 +117,7 @@ class Toastr
      */
     public function error($message, $title = null, $options = [])
     {
-        $this->add('error', $message, $title, $options);
+        $this->add(self::ERROR, $message, $title, $options);
     }
 
     /**
@@ -105,7 +129,7 @@ class Toastr
      */
     public function warning($message, $title = null, $options = [])
     {
-        $this->add('warning', $message, $title, $options);
+        $this->add(self::WARNING, $message, $title, $options);
     }
 
     /**
@@ -117,7 +141,7 @@ class Toastr
      */
     public function success($message, $title = null, $options = [])
     {
-        $this->add('success', $message, $title, $options);
+        $this->add(self::SUCCESS, $message, $title, $options);
     }
 
     /**
