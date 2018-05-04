@@ -1,7 +1,7 @@
 {
     "name"             : "yoeunes/toastr",
     "license"          : "MIT",
-    "description"      : "toastr.js notifications for Laravel 5",
+    "description"      : "toastr.js flush notifications for Laravel 5",
     "homepage"         : "https://github.com/yoeunes/toastr",
     "keywords"         : [
         "toastr",
@@ -9,7 +9,18 @@
         "notification",
         "laravel",
         "laravel 5",
-        "php"
+        "laravel 5.6",
+        "laravel notification",
+        "laravel toastr",
+        "flush",
+        "flush notifications",
+        "laravel flush notifications",
+        "flush messages",
+        "messages",
+        "alerts",
+        "Lumen",
+        "php",
+        "yoeunes"
     ],
     "authors"          : [
         {

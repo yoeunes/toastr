@@ -13,6 +13,8 @@
     <a href="https://packagist.org/packages/yoeunes/toastr"><img src="https://poser.pugx.org/yoeunes/toastr/license" alt="License"></a>
 </p>
 
+<p align="center"><img width="300" alt="toastr" src="https://user-images.githubusercontent.com/10859693/39634578-1a9f121a-4fb3-11e8-8863-d64fad42901b.png"></p>
+
 ## Install
 
 You can install the package using composer
@@ -51,6 +53,35 @@ The custom directives `@jquery`, `@toastr_css`, `@toastr_js` pulls the latest ve
 ```php
 // Display an info toast with no title
 toastr()->info('Are you the 6 fingered man?')
+```
+
+as an example:
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Post;
+use App\Http\Requests\PostRequest;
+use Illuminate\Database\Eloquent\Model;
+
+class PostController extends Controller
+{
+    public function store(PostRequest $request)
+    {
+        $post = Post::create($request->only(['title', 'body']));
+
+        if ($post instanceof Model) {
+            toastr()->success('Data has been saved successfully!');
+
+            return redirect()->route('posts.index');
+        }
+
+        toastr()->error('An error has occurred please try again later.');
+
+        return back();
+    }
+}
 ```
 
 After that add the `@toastr_render` at the bottom of your view to actualy render the toastr notifications.
