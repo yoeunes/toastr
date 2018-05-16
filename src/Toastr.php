@@ -133,7 +133,7 @@ class Toastr
      */
     public function options()
     {
-        return 'toastr.options = '.json_encode(config('toastr.options')).';';
+        return 'toastr.options = '.json_encode(config('toastr.options'), []).';';
     }
 
     /**
