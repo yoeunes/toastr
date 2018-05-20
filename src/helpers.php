@@ -19,7 +19,7 @@ if (! function_exists('toastr')) {
     }
 }
 
-if (! toastInfo('toastInfo')) {
+if (! function_exists('toastInfo')) {
     /**
      * @param string $message
      * @param string $title
@@ -33,7 +33,7 @@ if (! toastInfo('toastInfo')) {
     }
 }
 
-if (! toastInfo('toastSuccess')) {
+if (! function_exists('toastSuccess')) {
     /**
      * @param string $message
      * @param string $title
@@ -47,7 +47,7 @@ if (! toastInfo('toastSuccess')) {
     }
 }
 
-if (! toastInfo('toastWarning')) {
+if (! function_exists('toastWarning')) {
     /**
      * @param string $message
      * @param string $title
@@ -61,7 +61,7 @@ if (! toastInfo('toastWarning')) {
     }
 }
 
-if (! toastInfo('toastError')) {
+if (! function_exists('toastError')) {
     /**
      * @param string $message
      * @param string $title
