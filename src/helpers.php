@@ -19,6 +19,62 @@ if (! function_exists('toastr')) {
     }
 }
 
+if (! toastInfo('toastInfo')) {
+    /**
+     * @param string $message
+     * @param string $title
+     * @param array $options
+     *
+     * @return \Yoeunes\Toastr\Toastr
+     */
+    function toastInfo(string $message = null, string $title = '', array $options = [])
+    {
+        return app('toastr')->addNotification(\Yoeunes\Toastr\Toastr::INFO, $message, $title, $options);
+    }
+}
+
+if (! toastInfo('toastSuccess')) {
+    /**
+     * @param string $message
+     * @param string $title
+     * @param array $options
+     *
+     * @return \Yoeunes\Toastr\Toastr
+     */
+    function toastSuccess(string $message = null, string $title = '', array $options = [])
+    {
+        return app('toastr')->addNotification(\Yoeunes\Toastr\Toastr::SUCCESS, $message, $title, $options);
+    }
+}
+
+if (! toastInfo('toastWarning')) {
+    /**
+     * @param string $message
+     * @param string $title
+     * @param array $options
+     *
+     * @return \Yoeunes\Toastr\Toastr
+     */
+    function toastWarning(string $message = null, string $title = '', array $options = [])
+    {
+        return app('toastr')->addNotification(\Yoeunes\Toastr\Toastr::WARNING, $message, $title, $options);
+    }
+}
+
+if (! toastInfo('toastError')) {
+    /**
+     * @param string $message
+     * @param string $title
+     * @param array $options
+     *
+     * @return \Yoeunes\Toastr\Toastr
+     */
+    function toastError(string $message = null, string $title = '', array $options = [])
+    {
+        return app('toastr')->addNotification(\Yoeunes\Toastr\Toastr::ERROR, $message, $title, $options);
+    }
+}
+
 if (! function_exists('toastr_js')) {
     /**
      * @param string $version
