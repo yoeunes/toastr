@@ -200,7 +200,9 @@ return [
 For a list of available options, see [toastr.js' documentation](https://github.com/CodeSeven/toastr).
 
 ## Credits
-Inspired by https://github.com/oriceon/toastr-5-laravel and https://github.com/kamaln7/toastr.
+
+- [Younes Khoubza](https://github.com/yoeunes)
+- [All Contributors](../../contributors)
 
 ## License
 
