@@ -58,6 +58,9 @@
         "laravel": {
             "providers": [
                 "Yoeunes\\Toastr\\ToastrServiceProvider"
+            ],
+            "aliases": [
+                "Yoeunes\\Toastr\\Facades\\Toastr"
             ]
         }
     },

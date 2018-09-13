@@ -2,6 +2,9 @@
 
 namespace Yoeunes\Toastr;
 
+use Illuminate\Config\Repository;
+use Illuminate\Session\SessionManager;
+
 class Toastr
 {
     const ERROR   = 'error';
@@ -18,9 +21,26 @@ class Toastr
      */
     protected $notifications = [];
 
-    public function __construct()
+    /**
+     * Illuminate Session
+     *
+     * @var \Illuminate\Session\SessionManager
+     */
+    protected $session;
+    /**
+     * Toastr config
+     *
+     * @var Illuminate\Config\Repository
+     */
+    protected $config;
+
+    public function __construct(SessionManager $session, Repository $config)
     {
-        $this->notifications = session(self::TOASTR_NOTIFICATIONS, []);
+        $this->session = $session;
+
+        $this->config = $config;
+
+        $this->notifications = $this->session->get(self::TOASTR_NOTIFICATIONS, []);
     }
 
     /**
@@ -105,7 +125,7 @@ class Toastr
             'options' => json_encode($options),
         ];
 
-        session()->flash(self::TOASTR_NOTIFICATIONS, $this->notifications);
+        $this->session->flash(self::TOASTR_NOTIFICATIONS, $this->notifications);
 
         return $this;
     }
@@ -121,7 +141,7 @@ class Toastr
     {
         $toastr = '<script type="text/javascript">'.$this->options().$this->notificationsAsString().'</script>';
 
-        session()->forget(self::TOASTR_NOTIFICATIONS);
+        $this->session->forget(self::TOASTR_NOTIFICATIONS);
 
         return $toastr;
     }
@@ -133,7 +153,7 @@ class Toastr
      */
     public function options()
     {
-        return 'toastr.options = '.json_encode(config('toastr.options', [])).';';
+        return 'toastr.options = '.json_encode($this->config->get('toastr.options', [])).';';
     }
 
     /**
@@ -155,7 +175,7 @@ class Toastr
             function ($n) {
                 return $this->toastr($n['type'], $n['message'], $n['title'], $n['options']);
             },
-            session(self::TOASTR_NOTIFICATIONS, [])
+            $this->session->get(self::TOASTR_NOTIFICATIONS, [])
         );
     }
 

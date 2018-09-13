@@ -2,8 +2,13 @@
 
 namespace Yoeunes\Toastr;
 
+use Illuminate\Container\Container;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\Application as LaravelApplication;
+use Laravel\Lumen\Application as LumenApplication;
+use function var_dump;
+use function var_export;
 
 class ToastrServiceProvider extends ServiceProvider
 {
@@ -14,11 +19,16 @@ class ToastrServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->publishes([
-            __DIR__.'/../config/toastr.php' => config_path('toastr.php'),
-        ], 'config');
+        $source = realpath($raw = __DIR__.'/../config/toastr.php') ?: $raw;
 
-        $this->registerBladeDirectives();
+        if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
+            $this->publishes([$source => config_path('toastr.php')]);
+        } elseif ($this->app instanceof LumenApplication) {
+            $this->app->configure('toastr');
+            $this->app->configure('session');
+        }
+
+        $this->mergeConfigFrom($source, 'toastr');
     }
 
     /**
@@ -28,11 +38,17 @@ class ToastrServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/toastr.php', 'toastr');
-
-        $this->app->singleton('toastr', function () {
-            return new Toastr();
+        $this->app->singleton('toastr', function (Container $app) {
+            return new Toastr($app['session'], $app['config']);
         });
+
+        $this->app->alias('toastr', Toastr::class);
+
+        if ($this->app instanceof LumenApplication) {
+            $this->app->register(\Illuminate\Session\SessionServiceProvider::class);
+        }
+
+        $this->registerBladeDirectives();
     }
 
     public function registerBladeDirectives()
@@ -52,5 +68,17 @@ class ToastrServiceProvider extends ServiceProvider
         Blade::directive('jquery', function ($version) {
             return "<?php echo jquery($version); ?>";
         });
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return string[]
+     */
+    public function provides()
+    {
+        return [
+            'toastr',
+        ];
     }
 }
