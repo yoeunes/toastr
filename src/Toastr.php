@@ -4,6 +4,8 @@ namespace Yoeunes\Toastr;
 
 use Illuminate\Config\Repository;
 use Illuminate\Session\SessionManager;
+use function in_array;
+use function json_encode;
 
 class Toastr
 {
@@ -27,13 +29,20 @@ class Toastr
      * @var \Illuminate\Session\SessionManager
      */
     protected $session;
+
     /**
      * Toastr config.
      *
-     * @var Illuminate\Config\Repository
+     * @var \Illuminate\Config\Repository
      */
     protected $config;
 
+    /**
+     * Toastr constructor.
+     *
+     * @param SessionManager $session
+     * @param Repository $config
+     */
     public function __construct(SessionManager $session, Repository $config)
     {
         $this->session = $session;
@@ -59,7 +68,7 @@ class Toastr
      *
      * @return Toastr
      */
-    public function error(string $message, string $title = '', array $options = [])
+    public function error(string $message, string $title = '', array $options = []): Toastr
     {
         return $this->addNotification(self::ERROR, $message, $title, $options);
     }
@@ -73,7 +82,7 @@ class Toastr
      *
      * @return Toastr
      */
-    public function info(string $message, string $title = '', array $options = [])
+    public function info(string $message, string $title = '', array $options = []): Toastr
     {
         return $this->addNotification(self::INFO, $message, $title, $options);
     }
@@ -87,7 +96,7 @@ class Toastr
      *
      * @return Toastr
      */
-    public function success(string $message, string $title = '', array $options = [])
+    public function success(string $message, string $title = '', array $options = []): Toastr
     {
         return $this->addNotification(self::SUCCESS, $message, $title, $options);
     }
@@ -101,7 +110,7 @@ class Toastr
      *
      * @return Toastr
      */
-    public function warning(string $message, string $title = '', array $options = [])
+    public function warning(string $message, string $title = '', array $options = []): Toastr
     {
         return $this->addNotification(self::WARNING, $message, $title, $options);
     }
@@ -116,10 +125,10 @@ class Toastr
      *
      * @return Toastr
      */
-    public function addNotification(string $type, string $message, string $title = '', array $options = [])
+    public function addNotification(string $type, string $message, string $title = '', array $options = []): Toastr
     {
         $this->notifications[] = [
-            'type'    => in_array($type, $this->allowedTypes) ? $type : self::WARNING,
+            'type'    => in_array($type, $this->allowedTypes, true) ? $type : self::WARNING,
             'title'   => $this->escapeSingleQuote($title),
             'message' => $this->escapeSingleQuote($message),
             'options' => json_encode($options),
@@ -134,10 +143,8 @@ class Toastr
      * Render the notifications' script tag.
      *
      * @return string
-     *
-     * @internal param bool $flashed Whether to get the
      */
-    public function render()
+    public function render(): string
     {
         $toastr = '<script type="text/javascript">'.$this->options().$this->notificationsAsString().'</script>';
 
@@ -151,7 +158,7 @@ class Toastr
      *
      * @return string
      */
-    public function options()
+    public function options(): string
     {
         return 'toastr.options = '.json_encode($this->config->get('toastr.options', [])).';';
     }
@@ -159,7 +166,7 @@ class Toastr
     /**
      * @return string
      */
-    public function notificationsAsString()
+    public function notificationsAsString(): string
     {
         return implode('', $this->notifications());
     }
@@ -169,7 +176,7 @@ class Toastr
      *
      * @return array
      */
-    public function notifications()
+    public function notifications(): array
     {
         return array_map(
             function ($n) {
@@ -189,7 +196,7 @@ class Toastr
      *
      * @return string
      */
-    public function toastr(string $type, string $message = '', string $title = '', string $options = '')
+    public function toastr(string $type, string $message = '', string $title = '', string $options = ''): string
     {
         return "toastr.$type('$message', '$title', $options);";
     }
@@ -199,7 +206,7 @@ class Toastr
      *
      * @return Toastr
      */
-    public function clear()
+    public function clear(): Toastr
     {
         $this->notifications = [];
 
@@ -213,7 +220,7 @@ class Toastr
      *
      * @return string
      */
-    private function escapeSingleQuote(string $value)
+    private function escapeSingleQuote(string $value): string
     {
         return str_replace("'", "\\'", $value);
     }

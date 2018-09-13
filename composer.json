@@ -31,7 +31,7 @@
         }
     ],
     "require"          : {
-        "php"               : "^7.0|^7.1",
+        "php"               : "7.0",
         "illuminate/session": "~5.5.0|~5.6.0|~5.7.0",
         "illuminate/support": "~5.5.0|~5.6.0|~5.7.0"
     },
@@ -59,9 +59,9 @@
             "providers": [
                 "Yoeunes\\Toastr\\ToastrServiceProvider"
             ],
-            "aliases": [
-                "Yoeunes\\Toastr\\Facades\\Toastr"
-            ]
+            "aliases": {
+                "Toastr": "Yoeunes\\Toastr\\Facades\\Toastr"
+            }
         }
     },
     "config"           : {
