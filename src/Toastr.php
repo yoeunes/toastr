@@ -22,13 +22,13 @@ class Toastr
     protected $notifications = [];
 
     /**
-     * Illuminate Session
+     * Illuminate Session.
      *
      * @var \Illuminate\Session\SessionManager
      */
     protected $session;
     /**
-     * Toastr config
+     * Toastr config.
      *
      * @var Illuminate\Config\Repository
      */
