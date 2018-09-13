@@ -2,15 +2,15 @@
 
 namespace Yoeunes\Toastr;
 
-use Illuminate\Config\Repository;
-use Illuminate\Session\SessionManager;
 use function in_array;
 use function json_encode;
+use Illuminate\Config\Repository;
+use Illuminate\Session\SessionManager;
 
 class Toastr
 {
-    const ERROR   = 'error';
-    const INFO    = 'info';
+    const ERROR = 'error';
+    const INFO = 'info';
     const SUCCESS = 'success';
     const WARNING = 'warning';
 
@@ -68,7 +68,7 @@ class Toastr
      *
      * @return Toastr
      */
-    public function error(string $message, string $title = '', array $options = []): Toastr
+    public function error(string $message, string $title = '', array $options = []): self
     {
         return $this->addNotification(self::ERROR, $message, $title, $options);
     }
@@ -82,7 +82,7 @@ class Toastr
      *
      * @return Toastr
      */
-    public function info(string $message, string $title = '', array $options = []): Toastr
+    public function info(string $message, string $title = '', array $options = []): self
     {
         return $this->addNotification(self::INFO, $message, $title, $options);
     }
@@ -96,7 +96,7 @@ class Toastr
      *
      * @return Toastr
      */
-    public function success(string $message, string $title = '', array $options = []): Toastr
+    public function success(string $message, string $title = '', array $options = []): self
     {
         return $this->addNotification(self::SUCCESS, $message, $title, $options);
     }
@@ -110,7 +110,7 @@ class Toastr
      *
      * @return Toastr
      */
-    public function warning(string $message, string $title = '', array $options = []): Toastr
+    public function warning(string $message, string $title = '', array $options = []): self
     {
         return $this->addNotification(self::WARNING, $message, $title, $options);
     }
@@ -125,7 +125,7 @@ class Toastr
      *
      * @return Toastr
      */
-    public function addNotification(string $type, string $message, string $title = '', array $options = []): Toastr
+    public function addNotification(string $type, string $message, string $title = '', array $options = []): self
     {
         $this->notifications[] = [
             'type'    => in_array($type, $this->allowedTypes, true) ? $type : self::WARNING,
@@ -206,7 +206,7 @@ class Toastr
      *
      * @return Toastr
      */
-    public function clear(): Toastr
+    public function clear(): self
     {
         $this->notifications = [];
 
