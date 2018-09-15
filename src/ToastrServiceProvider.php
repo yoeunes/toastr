@@ -23,7 +23,6 @@ class ToastrServiceProvider extends ServiceProvider
             $this->publishes([$source => config_path('toastr.php')]);
         } elseif ($this->app instanceof LumenApplication) {
             $this->app->configure('toastr');
-            $this->app->configure('session');
         }
 
         $this->mergeConfigFrom($source, 'toastr');
@@ -36,15 +35,16 @@ class ToastrServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        if ($this->app instanceof LumenApplication) {
+            $this->app->register(\Illuminate\Session\SessionServiceProvider::class);
+            $this->app->configure('session');
+        }
+
         $this->app->singleton('toastr', function (Container $app) {
             return new Toastr($app['session'], $app['config']);
         });
 
         $this->app->alias('toastr', Toastr::class);
-
-        if ($this->app instanceof LumenApplication) {
-            $this->app->register(\Illuminate\Session\SessionServiceProvider::class);
-        }
 
         $this->registerBladeDirectives();
     }

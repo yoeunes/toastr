@@ -1,6 +1,6 @@
-<h1 align="center">Toastr.js notifications for Laravel 5</h1>
+<h1 align="center">Toastr.js notifications for Laravel 5 and Lumen</h1>
 
-<p align="center">:eyes: This package helps you to add toastr.js notifications to your Laravel 5 project.</p>
+<p align="center">:eyes: This package helps you to add <a href="https://github.com/CodeSeven/toastr">toastr.js</a> notifications to your Laravel 5 and Lumen projects.</p>
 
 <p align="center">
     <a href="https://travis-ci.org/yoeunes/toastr"><img src="https://travis-ci.org/yoeunes/toastr.svg?branch=master" alt="Build Status"></a>
@@ -38,6 +38,13 @@ As optional if you want to modify the default configuration, you can publish the
 ```sh
 $ php artisan vendor:publish --provider='Yoeunes\Toastr\ToastrServiceProvider' --tag="config"
 ```
+
+### for Lumen :
+
+1. In `bootstrap/app.php` 
+    * uncomment `$app->withFacades();`
+    * add bindings for ToastrServiceProvider : `$app->register(Yoeunes\Toastr\ToastrServiceProvider::class);` 
+2. Add `config/session.php`, since it is not present in `Lumen` by default. You can take `session.php` from [Laravel Official Repository](https://github.com/laravel/laravel/blob/master/config/session.php)
 
 ## Usage:
 
@@ -88,7 +95,7 @@ After that add the `@toastr_render` at the bottom of your view to actualy render
 
 ```blade
 <!doctype html>
-<html lang="{{ app()->getLocale() }}">
+<html>
     <head>
         <title>Toastr.js</title>
         @toastr_css
@@ -185,7 +192,7 @@ return [
         'preventDuplicates' => true,
         'progressBar'       => true,
         'progressClass'     => 'toast-progress',
-        'rtl'               => true,
+        'rtl'               => false,
         'showDuration'      => 300,
         'showEasing'        => 'swing',
         'showMethod'        => 'fadeIn',
