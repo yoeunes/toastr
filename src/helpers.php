@@ -7,7 +7,7 @@ if (! function_exists('toastr')) {
      * @param string $message
      * @param string $type
      * @param string $title
-     * @param array $options
+     * @param array  $options
      *
      * @return Toastr
      */
@@ -25,7 +25,7 @@ if (! function_exists('toastInfo')) {
     /**
      * @param string $message
      * @param string $title
-     * @param array $options
+     * @param array  $options
      *
      * @return Toastr
      */
@@ -39,7 +39,7 @@ if (! function_exists('toastSuccess')) {
     /**
      * @param string $message
      * @param string $title
-     * @param array $options
+     * @param array  $options
      *
      * @return Toastr
      */
@@ -53,7 +53,7 @@ if (! function_exists('toastWarning')) {
     /**
      * @param string $message
      * @param string $title
-     * @param array $options
+     * @param array  $options
      *
      * @return Toastr
      */
@@ -67,7 +67,7 @@ if (! function_exists('toastError')) {
     /**
      * @param string $message
      * @param string $title
-     * @param array $options
+     * @param array  $options
      *
      * @return Toastr
      */
