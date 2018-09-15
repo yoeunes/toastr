@@ -39,7 +39,7 @@ As optional if you want to modify the default configuration, you can publish the
 $ php artisan vendor:publish --provider='Yoeunes\Toastr\ToastrServiceProvider' --tag="config"
 ```
 
-### for Lumen :
+### For Lumen :
 
 1. In `bootstrap/app.php` 
     * uncomment `$app->withFacades();`
