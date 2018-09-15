@@ -2,8 +2,6 @@
 
 namespace Yoeunes\Toastr;
 
-use function in_array;
-use function json_encode;
 use Illuminate\Config\Repository;
 use Illuminate\Session\SessionManager;
 
@@ -41,7 +39,7 @@ class Toastr
      * Toastr constructor.
      *
      * @param SessionManager $session
-     * @param Repository $config
+     * @param Repository     $config
      */
     public function __construct(SessionManager $session, Repository $config)
     {
@@ -63,8 +61,8 @@ class Toastr
      * Shortcut for adding an error notification.
      *
      * @param string $message The notification's message
-     * @param string $title The notification's title
-     * @param array $options
+     * @param string $title   The notification's title
+     * @param array  $options
      *
      * @return Toastr
      */
@@ -77,8 +75,8 @@ class Toastr
      * Shortcut for adding an info notification.
      *
      * @param string $message The notification's message
-     * @param string $title The notification's title
-     * @param array $options
+     * @param string $title   The notification's title
+     * @param array  $options
      *
      * @return Toastr
      */
@@ -91,8 +89,8 @@ class Toastr
      * Shortcut for adding a success notification.
      *
      * @param string $message The notification's message
-     * @param string $title The notification's title
-     * @param array $options
+     * @param string $title   The notification's title
+     * @param array  $options
      *
      * @return Toastr
      */
@@ -105,8 +103,8 @@ class Toastr
      * Shortcut for adding a warning notification.
      *
      * @param string $message The notification's message
-     * @param string $title The notification's title
-     * @param array $options
+     * @param string $title   The notification's title
+     * @param array  $options
      *
      * @return Toastr
      */
@@ -118,10 +116,10 @@ class Toastr
     /**
      * Add a notification.
      *
-     * @param string $type Could be error, info, success, or warning.
+     * @param string $type    Could be error, info, success, or warning.
      * @param string $message The notification's message
-     * @param string $title The notification's title
-     * @param array $options
+     * @param string $title   The notification's title
+     * @param array  $options
      *
      * @return Toastr
      */
@@ -189,8 +187,8 @@ class Toastr
     /**
      * Create a single toastr.
      *
-     * @param string $type
-     * @param string $message
+     * @param string      $type
+     * @param string      $message
      * @param string|null $title
      * @param string|null $options
      *
