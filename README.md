@@ -1,5 +1,5 @@
 <h1 align="center">Toastr.js notifications for Laravel 5 and Lumen</h1>
-
+<h1 align="center" color="green" style='color:green;'>For more drivers (toastr, pnotify, sweetalers2) please try the new package <a href="https://github.com/yoeunes/notify">yoeunes/notify</a></h1>
 <p align="center">:eyes: This package helps you to add <a href="https://github.com/CodeSeven/toastr">toastr.js</a> notifications to your Laravel 5 and Lumen projects.</p>
 
 <p align="center">
