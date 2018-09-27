@@ -122,7 +122,7 @@ toastr()->error('I do not think that word means what you think it means.', 'Inco
 
 // Override global config options from 'config/toastr.php'
 
-toastr()->success('We do have the Kapua suite available.', 'Turtle Bay Resort', ['timeOut': 5000])
+toastr()->success('We do have the Kapua suite available.', 'Turtle Bay Resort', ['timeOut' => 5000])
 ```
 
 ### other api methods:
