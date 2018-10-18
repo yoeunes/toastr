@@ -26,6 +26,8 @@ class ToastrServiceProvider extends ServiceProvider
         }
 
         $this->mergeConfigFrom($source, 'toastr');
+
+        $this->registerBladeDirectives();
     }
 
     /**
@@ -45,8 +47,6 @@ class ToastrServiceProvider extends ServiceProvider
         });
 
         $this->app->alias('toastr', Toastr::class);
-
-        $this->registerBladeDirectives();
     }
 
     public function registerBladeDirectives()
