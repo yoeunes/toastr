@@ -20,7 +20,7 @@ class ToastrServiceProvider extends ServiceProvider
         $source = realpath($raw = __DIR__.'/../config/toastr.php') ?: $raw;
 
         if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
-            $this->publishes([$source => config_path('toastr.php')]);
+            $this->publishes([$source => config_path('toastr.php')], 'config');
         } elseif ($this->app instanceof LumenApplication) {
             $this->app->configure('toastr');
         }
