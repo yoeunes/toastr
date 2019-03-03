@@ -9,8 +9,9 @@
         "notification",
         "laravel",
         "laravel 5",
-        "laravel 5.6",
+        "laravel 5.8",
         "laravel notification",
+        "laravel notify",
         "laravel toastr",
         "flush",
         "flush notifications",
@@ -26,7 +27,7 @@
         {
             "name"    : "Younes Khoubza",
             "email"   : "younes.khoubza@gmail.com",
-            "homepage": "https://dalilbook.com",
+            "homepage": "https://github.com/yoeunes",
             "role"    : "Developer"
         }
     ],
@@ -35,10 +36,6 @@
         "illuminate/session": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
         "illuminate/support": "~5.5.0|~5.6.0|~5.7.0|~5.8.0"
     },
-    "require-dev"      : {
-        "orchestra/testbench": "~3.5.0|~3.6.0|~3.7.0",
-        "phpunit/phpunit": "^6.2|^7.0"
-    },
     "autoload"         : {
         "psr-4": {
             "Yoeunes\\Toastr\\": "src"
@@ -46,11 +43,6 @@
         "files": [
             "src/helpers.php"
         ]
-    },
-    "autoload-dev"     : {
-        "psr-4": {
-            "Yoeunes\\Toastr\\Tests\\": "tests"
-        }
     },
     "minimum-stability": "stable",
     "prefer-stable"    : true,

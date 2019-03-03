@@ -1,7 +1,8 @@
-vendor/
-.idea
-/coverage
-composer.phar
+build
 composer.lock
-coverage.clover
-phpunit.phar
+docs
+vendor
+.php_cs.cache
+coverage
+.phpunit.result.cache
+.idea

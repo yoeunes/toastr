@@ -3,7 +3,6 @@
 <p align="center">:eyes: This package helps you to add <a href="https://github.com/CodeSeven/toastr">toastr.js</a> notifications to your Laravel 5 and Lumen projects.</p>
 
 <p align="center">
-    <a href="https://travis-ci.org/yoeunes/toastr"><img src="https://travis-ci.org/yoeunes/toastr.svg?branch=master" alt="Build Status"></a>
     <a href="https://packagist.org/packages/yoeunes/toastr"><img src="https://poser.pugx.org/yoeunes/toastr/v/stable" alt="Latest Stable Version"></a>
     <a href="https://packagist.org/packages/yoeunes/toastr"><img src="https://poser.pugx.org/yoeunes/toastr/v/unstable" alt="Latest Unstable Version"></a>
     <a href="https://scrutinizer-ci.com/g/yoeunes/toastr/build-status/master"><img src="https://scrutinizer-ci.com/g/yoeunes/toastr/badges/build.png?b=master" alt="Build Status"></a>
