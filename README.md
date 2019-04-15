@@ -125,7 +125,7 @@ toastr()->success('We do have the Kapua suite available.', 'Turtle Bay Resort', 
 ```
 
 ### Limit the number of displayed toastrs
-    To limit the number of displayed toastrs set the value `maxItems` in the config file to an integer value, you can also set  it per action in your controller like this:
+To limit the number of displayed toastrs set the value `maxItems` in the config file to an integer value, you can also set  it per action in your controller like this:
 
 ```php
 toastr()->success('Have fun storming the castle!', 'Miracle Max Says');
