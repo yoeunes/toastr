@@ -1,6 +1,9 @@
 <?php
 
 return [
+    // Limit the number of displayed toasts
+    'maxItems' => null,
+    
     'options' => [
         'closeButton'       => true,
         'closeClass'        => 'toast-close-button',
