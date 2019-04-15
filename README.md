@@ -124,7 +124,20 @@ toastr()->error('I do not think that word means what you think it means.', 'Inco
 toastr()->success('We do have the Kapua suite available.', 'Turtle Bay Resort', ['timeOut' => 5000])
 ```
 
-### other api methods:
+### Limit the number of displayed toastrs
+    To limit the number of displayed toastrs set the value `maxItems` in the config file to an integer value, you can also set  it per action in your controller like this:
+
+```php
+toastr()->success('Have fun storming the castle!', 'Miracle Max Says');
+toastr()->error('I do not think that word means what you think it means.', 'Inconceivable!'); // i want to display this one
+toastr()->info('Are you the 6 fingered man?'); // and this one
+
+toastr()->maxItems(2);
+```
+
+now if you call the render method the last two notifications will be displayed
+
+### Other api methods:
 // You can also chain multiple messages together using method chaining
 ```php
 toastr()->info('Are you the 6 fingered man?')->success('Have fun storming the castle!')->warning('doritos');
@@ -161,6 +174,9 @@ so
 <?php
 
 return [
+    // Limit the number of displayed toasts, by default no limits
+    'maxItems' => null,
+    
     'options' => [
         'closeButton'       => true,
         'closeClass'        => 'toast-close-button',
