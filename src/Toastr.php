@@ -34,9 +34,9 @@ class Toastr
      * @var \Illuminate\Config\Repository
      */
     protected $config;
-    
+
     /**
-     * Limit the number of displayed toasts
+     * Limit the number of displayed toasts.
      *
      * @var int
      */
@@ -55,7 +55,7 @@ class Toastr
         $this->config = $config;
 
         $this->notifications = $this->session->get(self::TOASTR_NOTIFICATIONS, []);
-    
+
         $this->maxItems = $config->get('toastr.maxItems', null);
     }
 
@@ -221,7 +221,7 @@ class Toastr
     }
 
     /**
-     * Limit the number of displayed toasts
+     * Limit the number of displayed toasts.
      *
      * @param int $max
      *
@@ -230,10 +230,10 @@ class Toastr
     public function maxItems(int $max): self
     {
         $this->maxItems = $max;
-        
+
         return $this;
     }
-    
+
     /**
      * helper function to escape single quote for example for french words.
      *
