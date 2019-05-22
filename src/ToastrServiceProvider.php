@@ -71,6 +71,7 @@ class ToastrServiceProvider extends ServiceProvider
             if (isset($src)) {
                 return "<?php echo jquery($version, $src); ?>";
             }
+            
             return "<?php echo jquery($version); ?>";
         });
     }
