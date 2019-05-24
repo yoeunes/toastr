@@ -63,7 +63,15 @@ class ToastrServiceProvider extends ServiceProvider
             return "<?php echo toastr_js($version); ?>";
         });
 
-        Blade::directive('jquery', function ($version) {
+        Blade::directive('jquery', function ($arguments) {
+            $version = $arguments;
+            if (strpos($arguments, ',')) {
+                [$version, $src] = explode(',', $arguments);
+            }
+            if (isset($src)) {
+                return "<?php echo jquery($version, $src); ?>";
+            }
+
             return "<?php echo jquery($version); ?>";
         });
     }
