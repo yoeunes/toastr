@@ -1,15 +1,15 @@
 {
-    "name"             : "yoeunes/toastr",
-    "license"          : "MIT",
-    "description"      : "toastr.js flush notifications for Laravel 5 and Lumen",
-    "homepage"         : "https://github.com/yoeunes/toastr",
-    "keywords"         : [
+    "name": "yoeunes/toastr",
+    "license": "MIT",
+    "description": "toastr.js flush notifications for Laravel 5 and Lumen",
+    "homepage": "https://github.com/yoeunes/toastr",
+    "keywords": [
         "toastr",
         "toastr js",
         "notification",
         "laravel",
         "laravel 5",
-        "laravel 5.8",
+        "laravel 6",
         "laravel notification",
         "laravel notify",
         "laravel toastr",
@@ -23,20 +23,26 @@
         "php",
         "yoeunes"
     ],
-    "authors"          : [
+    "authors": [
         {
-            "name"    : "Younes Khoubza",
-            "email"   : "younes.khoubza@gmail.com",
+            "name": "Younes Khoubza",
+            "email": "younes.khoubza@gmail.com",
             "homepage": "https://github.com/yoeunes",
-            "role"    : "Developer"
+            "role": "Developer"
         }
     ],
-    "require"          : {
-        "php"               : "^7.0|^7.1|^7.2",
-        "illuminate/session": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
-        "illuminate/support": "~5.5.0|~5.6.0|~5.7.0|~5.8.0"
+    "support": {
+        "email": "younes.khoubza@gmail.com",
+        "issues": "https://github.com/yoeunes/toastr/issues",
+        "source": "https://github.com/yoeunes/toastr",
+        "docs": "https://github.com/yoeunes/toastr/README.md"
     },
-    "autoload"         : {
+    "require": {
+        "php": ">=7.0",
+        "illuminate/session": "~5.5.0|~5.6.0|~5.7.0|~5.8.0|^6.0",
+        "illuminate/support": "~5.5.0|~5.6.0|~5.7.0|~5.8.0|^6.0"
+    },
+    "autoload": {
         "psr-4": {
             "Yoeunes\\Toastr\\": "src"
         },
@@ -45,8 +51,8 @@
         ]
     },
     "minimum-stability": "stable",
-    "prefer-stable"    : true,
-    "extra"            : {
+    "prefer-stable": true,
+    "extra": {
         "laravel": {
             "providers": [
                 "Yoeunes\\Toastr\\ToastrServiceProvider"
@@ -56,7 +62,7 @@
             }
         }
     },
-    "config"           : {
+    "config": {
         "sort-packages": true
     }
 }
