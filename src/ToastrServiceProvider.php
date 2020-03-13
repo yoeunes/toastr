@@ -17,17 +17,23 @@ class ToastrServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $source = realpath($raw = __DIR__.'/../config/toastr.php') ?: $raw;
-
         if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
-            $this->publishes([$source => config_path('toastr.php')], 'config');
+            $this->publishes([$this->configPath() => config_path('toastr.php')], 'config');
         } elseif ($this->app instanceof LumenApplication) {
             $this->app->configure('toastr');
         }
 
-        $this->mergeConfigFrom($source, 'toastr');
-
         $this->registerBladeDirectives();
+    }
+
+    /**
+     * Set the config path
+     *
+     * @return string
+     */
+    protected function configPath()
+    {
+        return __DIR__ . '/../config/toastr.php';
     }
 
     /**
@@ -37,6 +43,8 @@ class ToastrServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom($this->configPath(), 'toastr');
+
         if ($this->app instanceof LumenApplication) {
             $this->app->register(\Illuminate\Session\SessionServiceProvider::class);
             $this->app->configure('session');
@@ -66,7 +74,7 @@ class ToastrServiceProvider extends ServiceProvider
         Blade::directive('jquery', function ($arguments) {
             $version = $arguments;
             if (strpos($arguments, ',')) {
-                [$version, $src] = explode(',', $arguments);
+                list($version, $src) = explode(',', $arguments);
             }
             if (isset($src)) {
                 return "<?php echo jquery($version, $src); ?>";
