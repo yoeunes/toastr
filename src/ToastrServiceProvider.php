@@ -33,7 +33,7 @@ class ToastrServiceProvider extends ServiceProvider
      */
     protected function configPath()
     {
-        return __DIR__ . '/../config/toastr.php';
+        return __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'toastr.php';
     }
 
     /**
