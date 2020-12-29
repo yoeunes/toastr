@@ -128,9 +128,9 @@ if (! function_exists('jquery')) {
     }
 }
 
-if (!function_exists('toastr_path')) {
+if (! function_exists('toastr_path')) {
     /**
-     * normalize paths for linux and windows
+     * normalize paths for linux and windows.
      *
      * @param string $path
      *
@@ -138,6 +138,6 @@ if (!function_exists('toastr_path')) {
      */
     function toastr_path($path = ''): string
     {
-        return str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $path);
+        return str_replace(['/', '\\'], DIRECTORY_SEPARATOR, $path);
     }
 }
