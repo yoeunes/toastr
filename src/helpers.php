@@ -127,3 +127,17 @@ if (! function_exists('jquery')) {
         return '<script type="text/javascript" src="'.$src.'"></script>';
     }
 }
+
+if (!function_exists('toastr_path')) {
+    /**
+     * normalize paths for linux and windows
+     *
+     * @param string $path
+     *
+     * @return string
+     */
+    function toastr_path($path = ''): string
+    {
+        return str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $path);
+    }
+}
