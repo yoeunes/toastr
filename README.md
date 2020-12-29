@@ -35,8 +35,19 @@ Then add the service provider to `config/app.php`. In Laravel versions 5.5 and b
 As optional if you want to modify the default configuration, you can publish the configuration file:
  
 ```sh
-$ php artisan vendor:publish --provider='Yoeunes\Toastr\ToastrServiceProvider' --tag="config"
+$ php artisan vendor:publish --provider='Yoeunes\Toastr\ToastrServiceProvider' --tag="toastr-config"
 ```
+
+For windows users if you get `Unable to locate publishable resources` 
+
+![Screenshot from 2020-12-29 11-28-38](https://user-images.githubusercontent.com/10859693/103277521-82676380-49c9-11eb-9b83-48e9620e7314.png)
+
+Run this command :
+```sh
+$ php artisan vendor:publish"
+```
+
+And after that select `Yoeunes\Toastr\ToastrServiceProvider`
 
 ### For Lumen :
 
