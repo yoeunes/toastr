@@ -118,10 +118,10 @@ After that add the `@toastr_render` at the bottom of your view to actualy render
     </head>
     <body>
         
-    </body>
     @jquery
     @toastr_js
     @toastr_render
+    </body>
 </html>
 ```
 ### Other Options
