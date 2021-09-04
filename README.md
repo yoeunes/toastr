@@ -50,7 +50,7 @@ For windows users if you get `Unable to locate publishable resources`
 
 Run this command :
 ```sh
-$ php artisan vendor:publish"
+$ php artisan vendor:publish
 ```
 
 And after that select `Yoeunes\Toastr\ToastrServiceProvider`
