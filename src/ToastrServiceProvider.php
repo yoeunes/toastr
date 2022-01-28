@@ -75,7 +75,7 @@ class ToastrServiceProvider extends ServiceProvider
             $version = $arguments;
 
             if (strpos($arguments, ',')) {
-                list($version, $src) = explode(',', $arguments);
+                [$version, $src] = explode(',', $arguments);
             }
 
             if (isset($src)) {
