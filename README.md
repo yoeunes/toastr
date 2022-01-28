@@ -50,7 +50,7 @@ For windows users if you get `Unable to locate publishable resources`
 
 Run this command :
 ```sh
-$ php artisan vendor:publish"
+$ php artisan vendor:publish
 ```
 
 And after that select `Yoeunes\Toastr\ToastrServiceProvider`
@@ -118,10 +118,10 @@ After that add the `@toastr_render` at the bottom of your view to actualy render
     </head>
     <body>
         
-    </body>
     @jquery
     @toastr_js
     @toastr_render
+    </body>
 </html>
 ```
 ### Other Options

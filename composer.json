@@ -1,7 +1,7 @@
 {
     "name": "yoeunes/toastr",
     "license": "MIT",
-    "description": "toastr.js flush notifications for Laravel",
+    "description": "toastr.js flush notifications for Laravel and Lumen",
     "homepage": "https://github.com/yoeunes/toastr",
     "keywords": [
         "toastr",
