@@ -1,4 +1,4 @@
-<h1 align="center" data-color="red"><strong>THIS PACKAGE IS DEPRECATED, PLEASE USE  <a href="https://packagist.org/packages/php-flasher/flasher-toastr-laravel">php-flasher/flasher-toastr-laravel</a> INSTEAD</strong></h1>
+<h1 align="center" data-color="red"><strong>THIS PACKAGE IS DEPRECATED, PLEASE USE  <a href="https://php-flasher.io/">PHPFlasher</a> INSTEAD</strong></h1>
 
 <h1 align="center">Toastr.js notifications for Laravel 5 and Lumen</h1>
 
@@ -18,7 +18,7 @@
 
 ## Install
 
-<strong>THIS PACKAGE IS DEPRECATED, CONSIDER USING <a href="https://packagist.org/packages/php-flasher/flasher-toastr-laravel">php-flasher/flasher-toastr-laravel</a> INSTEAD</strong>
+<strong>THIS PACKAGE IS DEPRECATED, CONSIDER USING <a href="https://php-flasher.io/">PHPFlasher</a> INSTEAD</strong>
 
 You can install the package using composer
 
