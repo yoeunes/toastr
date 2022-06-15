@@ -39,10 +39,9 @@
         "docs": "https://github.com/yoeunes/toastr/README.md"
     },
     "require": {
-        "php": ">=7.0",
-        "ext-json": "*",
-        "illuminate/session": "^5.5 || ^6.0 || ^7.0 || ^8.0 || ^9.0",
-        "illuminate/support": "^5.5 || ^6.0 || ^7.0 || ^8.0 || ^9.0"
+        "php": ">=5.3",
+        "php-flasher/flasher-laravel": "^1.6",
+        "php-flasher/flasher-toastr": "^1.6"
     },
     "autoload": {
         "psr-4": {
