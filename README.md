@@ -1,10 +1,6 @@
+<h1 align="center" data-color="red"><strong>THIS PACKAGE IS DEPRECATED, PLEASE USE  <a href="https://packagist.org/packages/php-flasher/flasher-toastr-laravel">php-flasher/flasher-toastr-laravel</a> INSTEAD</strong></h1>
+
 <h1 align="center">Toastr.js notifications for Laravel 5 and Lumen</h1>
-
-> I'm working on a more advanced and more flexible solution for Laravel and Symfony, that include more drivers like : Tailwindcss, bootstrap, Noty, Sweet ALert, Notyf and Pnotify
-
-> I'm currently documenting all parts, but if you have time go check it here : https://php-flasher.github.io/
-> <p align="center"><img width="600" alt="flasher" src="https://user-images.githubusercontent.com/10859693/102468596-03317180-4052-11eb-9df3-44dc6235b238.png"></p>
-
 
 <p align="center">:eyes: This package helps you to add <a href="https://github.com/CodeSeven/toastr">toastr.js</a> notifications to your Laravel 5 and Lumen projects.</p>
 
