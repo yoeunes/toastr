@@ -1,12 +1,14 @@
 <?php
 
+/*
+ * This file is part of the yoeunes/toastr package.
+ * (c) Younes KHOUBZA <younes.khoubza@gmail.com>
+ */
+
 namespace Yoeunes\Toastr;
 
-use Illuminate\Container\Container;
-use Illuminate\Foundation\Application as LaravelApplication;
-use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\ServiceProvider;
-use Laravel\Lumen\Application as LumenApplication;
+use Flasher\Laravel\Support\ServiceProvider;
+use Flasher\Toastr\Prime\ToastrPlugin;
 
 class ToastrServiceProvider extends ServiceProvider
 {
@@ -15,25 +17,11 @@ class ToastrServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function afterBoot()
     {
-        if ($this->app instanceof LaravelApplication) {
-            $this->publishes([$this->configPath() => config_path('toastr.php')], 'toastr-config');
-        } elseif ($this->app instanceof LumenApplication) {
-            $this->app->configure('toastr');
-        }
-
-        $this->registerBladeDirectives();
-    }
-
-    /**
-     * Set the config path.
-     *
-     * @return string
-     */
-    protected function configPath()
-    {
-        return toastr_path(__DIR__.'/../config/toastr.php');
+        $this->publishes(array(
+            __DIR__.'/../config/toastr.php' => config_path('toastr.php'),
+        ));
     }
 
     /**
@@ -41,49 +29,14 @@ class ToastrServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function afterRegister()
     {
-        $this->mergeConfigFrom($this->configPath(), 'toastr');
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/toastr.php',
+            'toastr'
+        );
 
-        if ($this->app instanceof LumenApplication) {
-            $this->app->register(\Illuminate\Session\SessionServiceProvider::class);
-            $this->app->configure('session');
-        }
-
-        $this->app->singleton('toastr', function (Container $app) {
-            return new Toastr($app['session'], $app['config']);
-        });
-
-        $this->app->alias('toastr', Toastr::class);
-    }
-
-    public function registerBladeDirectives()
-    {
-        Blade::directive('toastr_render', function () {
-            return "<?php echo app('toastr')->render(); ?>";
-        });
-
-        Blade::directive('toastr_css', function ($version) {
-            return "<?php echo toastr_css($version); ?>";
-        });
-
-        Blade::directive('toastr_js', function ($version) {
-            return "<?php echo toastr_js($version); ?>";
-        });
-
-        Blade::directive('jquery', function ($arguments) {
-            $version = $arguments;
-
-            if (strpos($arguments, ',')) {
-                [$version, $src] = explode(',', $arguments);
-            }
-
-            if (isset($src)) {
-                return "<?php echo jquery($version, $src); ?>";
-            }
-
-            return "<?php echo jquery($version); ?>";
-        });
+        $this->registerToastr();
     }
 
     /**
@@ -93,8 +46,30 @@ class ToastrServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return [
+        return array(
             'toastr',
-        ];
+        );
+    }
+
+    /**
+     * @return ToastrPlugin
+     */
+    protected function createPlugin()
+    {
+        return new ToastrPlugin();
+    }
+
+    /**
+     * @return void
+     */
+    private function registerToastr()
+    {
+        $this->app->singleton('toastr', function ($app) {
+            $options = $app['config']->get('toastr.options', array());
+
+            return new Toastr($app['flasher.toastr'], $options);
+        });
+
+        $this->app->alias('toastr', 'Yoeunes\Toastr\Toastr');
     }
 }

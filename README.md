@@ -18,10 +18,12 @@
 
 ## Install
 
+<strong>THIS PACKAGE IS DEPRECATED, CONSIDER USING <a href="https://packagist.org/packages/php-flasher/flasher-toastr-laravel">php-flasher/flasher-toastr-laravel</a> INSTEAD</strong>
+
 You can install the package using composer
 
 ```sh
-$ composer require yoeunes/toastr
+composer require yoeunes/toastr
 ```
 
 Then add the service provider to `config/app.php`. In Laravel versions 5.5 and beyond, this step can be skipped if package auto-discovery is enabled.
@@ -37,44 +39,33 @@ Then add the service provider to `config/app.php`. In Laravel versions 5.5 and b
 As optional if you want to modify the default configuration, you can publish the configuration file:
  
 ```sh
-$ php artisan vendor:publish --provider='Yoeunes\Toastr\ToastrServiceProvider' --tag="toastr-config"
+php artisan vendor:publish --provider="Yoeunes\Toastr\ToastrServiceProvider"
 ```
 
-For windows users if you get `Unable to locate publishable resources` 
+For Windows users if you get `Unable to locate publishable resources` 
 
 ![Screenshot from 2020-12-29 11-28-38](https://user-images.githubusercontent.com/10859693/103277521-82676380-49c9-11eb-9b83-48e9620e7314.png)
 
 Run this command :
 ```sh
-$ php artisan vendor:publish
+php artisan vendor:publish
 ```
 
 And after that select `Yoeunes\Toastr\ToastrServiceProvider`
 
-### For Lumen :
-
-1. In `bootstrap/app.php` 
-    * uncomment `$app->withFacades();`
-    * add bindings for ToastrServiceProvider : `$app->register(Yoeunes\Toastr\ToastrServiceProvider::class);` 
-2. Add `config/session.php`, since it is not present in `Lumen` by default. You can take `session.php` from [Laravel Official Repository](https://github.com/laravel/laravel/blob/master/config/session.php)
-
 ## Usage:
 
-Include jQuery and [toastr.js](https://github.com/CodeSeven/toastr) in your view template: 
+The usage of this package is very simple and straightforward. it only required one step to use it :
 
-1. Link to jquery `<script src="jquery.min.js"></script>` or from cdn with our custom blade directive `@jquery`
-2. Link to toastr.css `<link href="toastr.css" rel="stylesheet"/>` or `@toastr_css`
-3. Link to toastr.js `<script src="toastr.js"></script>` or `@toastr_js` 
+Use `toastr()` helper function inside your controller to set a toast notification for info, success, warning or error
 
-The custom directives `@jquery`, `@toastr_css`, `@toastr_js` pulls the latest version for jquery and toastr from cdn.js, you could also pass a specified version a first parameter: `@jquery(3.2)`, `@toastr_css(2.1.4)` and `@toastr_js(2.1.4)`
-
-4. use `toastr()` helper function inside your controller to set a toast notification for info, success, warning or error
 ```php
 // Display an info toast with no title
 toastr()->info('Are you the 6 fingered man?')
 ```
 
-as an example:
+As an example:
+
 ```php
 <?php
 
@@ -103,23 +94,6 @@ class PostController extends Controller
 }
 ```
 
-After that add the `@toastr_render` at the bottom of your view to actualy render the toastr notifications.
-
-```blade
-<!doctype html>
-<html>
-    <head>
-        <title>Toastr.js</title>
-        @toastr_css
-    </head>
-    <body>
-        
-    @jquery
-    @toastr_js
-    @toastr_render
-    </body>
-</html>
-```
 ### Other Options
 
 ```php
@@ -137,44 +111,21 @@ toastr()->error('I do not think that word means what you think it means.', 'Inco
 toastr()->success('We do have the Kapua suite available.', 'Turtle Bay Resort', ['timeOut' => 5000])
 ```
 
-### Limit the number of displayed toastrs
-To limit the number of displayed toastrs set the value `maxItems` in the config file to an integer value, you can also set  it per action in your controller like this:
-
-```php
-toastr()->success('Have fun storming the castle!', 'Miracle Max Says');
-toastr()->error('I do not think that word means what you think it means.', 'Inconceivable!'); // i want to display this one
-toastr()->info('Are you the 6 fingered man?'); // and this one
-
-toastr()->maxItems(2);
-```
-
-now if you call the render method the last two notifications will be displayed
-
 ### Other api methods:
-// You can also chain multiple messages together using method chaining
+
+You can also chain multiple messages together using method chaining
+
 ```php
 toastr()->info('Are you the 6 fingered man?')->success('Have fun storming the castle!')->warning('doritos');
 ```
 
-// `@jquery`, `@toastr_css` and `@toastr_js` is an alias for helper functions:
-```php
-function jquery(string $version = '3.3.1', string $src = null);
-function toastr_css(string $version = '2.1.4', string $href = null);
-function toastr_js(string $version = '2.1.4', string $src = null);
-``` 
+You can use `toastr('')` instead of `toastr()->success()`
 
-
-// you could replace `@toastr_render` by :
-```php 
-toastr()->render() or app('toastr')->render()
-```
-
-// you can use `toastr('')` instead of `toastr()->success()`
 ```php
 function toastr(string $message = null, string $type = 'success', string $title = '', array $options = []);
 ```
 
-so
+So
 
 * `toastr($message)` is equivalent to `toastr()->success($message)`
 * `toastr($message, 'info')` is equivalent to `toastr()->info($message)`
@@ -187,8 +138,16 @@ so
 <?php
 
 return [
-    // Limit the number of displayed toasts, by default no limits
-    'maxItems' => null,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Toastr options
+    |--------------------------------------------------------------------------
+    |
+    | Here you can specify the options that will be passed to the toastr.js
+    | library. For a full list of options, visit the documentation.
+    |
+    */
     
     'options' => [
         'closeButton'       => true,
