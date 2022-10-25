@@ -103,8 +103,6 @@ class Toastr
      */
     public function addNotification($type, $message, $title = '', array $options = array())
     {
-        @trigger_error('yoeunes/toastr is deprecated please use PHPFlasher instead. see https://php-flasher.io/', \E_USER_DEPRECATED);
-
         $options = array_merge($this->options, $options);
 
         $this->toastrFactory->addFlash($type, $message, $title, $options);

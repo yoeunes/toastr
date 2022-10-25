@@ -23,6 +23,5 @@ return array(
     | ],
     */
 
-    'options' => array(
-    ),
+    'options' => array(),
 );
