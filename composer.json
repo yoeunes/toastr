@@ -40,8 +40,8 @@
     },
     "require": {
         "php": ">=5.3",
-        "php-flasher/flasher-laravel": "^1.6",
-        "php-flasher/flasher-toastr": "^1.6"
+        "php-flasher/flasher-laravel": "^1.9",
+        "php-flasher/flasher-toastr": "^1.9"
     },
     "autoload": {
         "psr-4": {
