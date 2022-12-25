@@ -54,7 +54,7 @@ class ToastrServiceProvider extends ServiceProvider
     /**
      * @return ToastrPlugin
      */
-    protected function createPlugin()
+    function createPlugin()
     {
         return new ToastrPlugin();
     }
