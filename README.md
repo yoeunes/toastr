@@ -108,17 +108,6 @@ As optional if you want to modify the default configuration, you can publish the
 php artisan vendor:publish --provider="Yoeunes\Toastr\ToastrServiceProvider"
 ```
 
-For Windows users if you get `Unable to locate publishable resources` 
-
-![Screenshot from 2020-12-29 11-28-38](https://user-images.githubusercontent.com/10859693/103277521-82676380-49c9-11eb-9b83-48e9620e7314.png)
-
-Run this command :
-```sh
-php artisan vendor:publish
-```
-
-And after that select `Yoeunes\Toastr\ToastrServiceProvider`
-
 ```php
 // config/toastr.php
 <?php
