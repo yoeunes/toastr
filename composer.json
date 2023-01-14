@@ -44,8 +44,7 @@
     },
     "require": {
         "php": ">=5.3",
-        "php-flasher/flasher-laravel": "^1.12",
-        "php-flasher/flasher-toastr": "^1.12"
+        "php-flasher/flasher-laravel": "^1.12"
     },
     "minimum-stability": "stable",
     "prefer-stable": true,

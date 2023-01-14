@@ -8,7 +8,6 @@
 namespace Yoeunes\Toastr;
 
 use Flasher\Laravel\Support\ServiceProvider;
-use Flasher\Toastr\Prime\ToastrPlugin;
 
 class ToastrServiceProvider extends ServiceProvider
 {

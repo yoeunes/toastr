@@ -7,8 +7,6 @@
 
 namespace Yoeunes\Toastr;
 
-use Flasher\Toastr\Prime\ToastrFactory;
-
 class Toastr
 {
     const ERROR = 'error';
