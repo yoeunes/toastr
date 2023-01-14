@@ -1,37 +1,41 @@
 {
     "name": "yoeunes/toastr",
+    "description": "toastr.js flush notifications for Laravel",
     "license": "MIT",
-    "description": "toastr.js flush notifications for Laravel and Lumen",
-    "homepage": "https://github.com/yoeunes/toastr",
+    "type": "library",
     "keywords": [
         "toastr",
         "toastr js",
-        "notification",
-        "laravel",
-        "laravel 5",
-        "laravel 6",
-        "laravel 7",
-        "laravel notification",
-        "laravel notify",
-        "laravel toastr",
-        "flush",
-        "flush notifications",
-        "laravel flush notifications",
-        "flush messages",
-        "messages",
-        "alerts",
-        "Lumen",
+        "php-flasher",
+        "flash-messages",
+        "notification-system",
+        "user-feedback",
+        "sweetalert",
+        "pnotify",
+        "noty",
+        "notyf",
+        "desktop-notifications",
         "php",
-        "yoeunes"
+        "laravel",
+        "symfony",
+        "javascript",
+        "yoeunes",
+        "framework-agnostic",
+        "phpstorm-auto-complete",
+        "custom-adapter",
+        "user-experience",
+        "rtl",
+        "dark-mode"
     ],
     "authors": [
         {
-            "name": "Younes Khoubza",
+            "name": "Younes KHOUBZA",
             "email": "younes.khoubza@gmail.com",
-            "homepage": "https://github.com/yoeunes",
+            "homepage": "https://www.linkedin.com/in/younes-khoubza",
             "role": "Developer"
         }
     ],
+    "homepage": "https://github.com/yoeunes/toastr",
     "support": {
         "email": "younes.khoubza@gmail.com",
         "issues": "https://github.com/yoeunes/toastr/issues",
@@ -40,9 +44,11 @@
     },
     "require": {
         "php": ">=5.3",
-        "php-flasher/flasher-laravel": "^1.9",
-        "php-flasher/flasher-toastr": "^1.9"
+        "php-flasher/flasher-laravel": "^1.12",
+        "php-flasher/flasher-toastr": "^1.12"
     },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Yoeunes\\Toastr\\": "src"
@@ -51,19 +57,17 @@
             "src/helpers.php"
         ]
     },
-    "minimum-stability": "stable",
-    "prefer-stable": true,
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Yoeunes\\Toastr\\ToastrServiceProvider"
-            ],
-            "aliases": {
-                "Toastr": "Yoeunes\\Toastr\\Facades\\Toastr"
-            }
-        }
-    },
     "config": {
         "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "aliases": {
+                "Toastr": "Yoeunes\\Toastr\\Facades\\Toastr"
+            },
+            "providers": [
+                "Yoeunes\\Toastr\\ToastrServiceProvider"
+            ]
+        }
     }
 }

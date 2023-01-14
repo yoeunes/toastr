@@ -24,7 +24,7 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **Desktop (please complete the following information):**
- - OS: [e.g. iOS]
+ - OS: [e.g. Windows 10, iOS]
  - Browser [e.g. chrome, safari]
  - Version [e.g. 22]
 
@@ -34,5 +34,15 @@ If applicable, add screenshots to help explain your problem.
  - Browser [e.g. stock browser, safari]
  - Version [e.g. 22]
 
+**Severity**
+- [ ] High
+- [ ] Medium
+- [ ] Low
+
+**Related Issues**
+- #<NUMBER>
+
 **Additional context**
-Add any other context about the problem here.
+ - Provide version of the yoeunes/toastr.
+ - Provide the error log or any other relevant debugging information.
+ - Add any other context about the problem here.
