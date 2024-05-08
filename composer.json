@@ -4,69 +4,36 @@
     "license": "MIT",
     "type": "library",
     "keywords": [
-        "toastr",
-        "toastr js",
-        "php-flasher",
-        "flash-messages",
-        "notification-system",
-        "user-feedback",
-        "sweetalert",
-        "pnotify",
-        "noty",
-        "notyf",
-        "desktop-notifications",
-        "php",
         "laravel",
-        "symfony",
-        "javascript",
-        "yoeunes",
-        "framework-agnostic",
-        "phpstorm-auto-complete",
-        "custom-adapter",
-        "user-experience",
-        "rtl",
-        "dark-mode"
+        "toastr",
+        "flash-notifications",
+        "dynamic-notifications",
+        "phpflasher",
+        "user-feedback",
+        "open-source"
     ],
     "authors": [
         {
-            "name": "Younes KHOUBZA",
-            "email": "younes.khoubza@gmail.com",
-            "homepage": "https://www.linkedin.com/in/younes-khoubza",
+            "name": "Younes ENNAJI",
+            "email": "younes.ennaji.pro@gmail.com",
+            "homepage": "https://www.linkedin.com/in/younes--ennaji/",
             "role": "Developer"
         }
     ],
     "homepage": "https://github.com/yoeunes/toastr",
     "support": {
-        "email": "younes.khoubza@gmail.com",
-        "issues": "https://github.com/yoeunes/toastr/issues",
-        "source": "https://github.com/yoeunes/toastr",
-        "docs": "https://github.com/yoeunes/toastr/README.md"
+        "email": "younes.ennaji.pro@gmail.com",
+        "issues": "https://github.com/php-flasher/php-flasher/issues",
+        "source": "https://github.com/php-flasher/php-flasher",
+        "docs": "https://php-flasher.io"
     },
     "require": {
-        "php": ">=5.3",
-        "php-flasher/flasher-laravel": "^1.15.14"
+        "php": ">=8.2",
+        "php-flasher/flasher-toastr-laravel": "^2.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "autoload": {
-        "psr-4": {
-            "Yoeunes\\Toastr\\": "src"
-        },
-        "files": [
-            "src/helpers.php"
-        ]
-    },
     "config": {
         "sort-packages": true
-    },
-    "extra": {
-        "laravel": {
-            "aliases": {
-                "Toastr": "Yoeunes\\Toastr\\Facades\\Toastr"
-            },
-            "providers": [
-                "Yoeunes\\Toastr\\ToastrServiceProvider"
-            ]
-        }
     }
 }
