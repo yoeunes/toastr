@@ -29,7 +29,7 @@
     },
     "require": {
         "php": ">=8.2",
-        "php-flasher/flasher-toastr-laravel": "^2.0.1"
+        "php-flasher/flasher-toastr-laravel": "^2.0.4"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
